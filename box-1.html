@@ -20,7 +20,7 @@
 
     <!-- Styles for this page's viewer -->
     <style>
-       html, body {
+         html, body {
             width: 100%;
             height: 100%;
             margin: 0;
@@ -28,30 +28,19 @@
             overflow: hidden;
         }
 
-        #panorama {
+    #panorama {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
-
-   
     </style>
 </head>
 
 <body>
 
-    <div class="page-content">
-        <h1>Box 1 - 360° Panorama</h1>
-
-        <p>Explore this space by clicking and dragging the image.</p>
-
-        <!-- The panorama appears here -->
-        <div id="panorama"></div>
-
-        <p><a href="index.html">← Back to main page</a></p>
-    </div>
+  <div id="panorama"></div>
 
     <!-- Initialize Pannellum -->
     <script>
@@ -60,7 +49,6 @@
             panorama: 'img/panorama.jpg',
             autoLoad: true
         });
-    </script>
 
 </body>
 </html>
