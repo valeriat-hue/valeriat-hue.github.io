@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Pannellum viewer styles -->
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css"
+        >
+
+        <!-- Pannellum viewer JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   		<title>Highway - Free CSS Template</title>
@@ -49,9 +57,18 @@ https://templatemo.com/tm-520-highway
                 </div>    
             </div>
         </div>
-        <video autoplay="" loop="" muted>
-        	<source src="highway-loop.mp4" type="video/mp4" />
-        </video>
+        <section class="panorama-section">
+          <h2>Explore the space in 360°</h2>
+
+          <div id="panorama"></div>
+        </section>
+        <script>
+          pannellum.viewer('panorama', {
+            type: 'equirectangular',
+            panorama: 'img/panorama.jpg',
+            autoLoad: true
+          });
+        </script>
     </div>
 
 
