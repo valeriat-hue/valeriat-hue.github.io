@@ -249,7 +249,12 @@ nav {
 
 #video-container video,
 .video-overlay {
-   pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
 }
 
 #video-container .video-overlay {
