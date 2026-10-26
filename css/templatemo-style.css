@@ -25,6 +25,11 @@ body, html {
   min-height: 100%;
   overflow-x: hidden;
 }
+#panorama {
+  width: 100%;
+  height: 70vh;
+  min-height: 400px;
+}
 
 
 .page-heading {
