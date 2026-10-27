@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Box 4 Project 5050</title>
+
+    <!-- Pannellum CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css"
+    >
+
+    <!-- Pannellum JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Full-screen panorama */
+        #panorama {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Top title and subtitle */
+        .page-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.65),
+                rgba(0, 0, 0, 0)
+            );
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .page-header h1 {
+            margin: 0 0 8px;
+            font-size: clamp(26px, 4vw, 42px);
+            font-weight: 700;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        .page-header p {
+            margin: 0;
+            font-size: clamp(14px, 2vw, 19px);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Bottom navigation button */
+        .back-button {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+
+            display: inline-block;
+            padding: 14px 26px;
+            border-radius: 30px;
+
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.95);
+            color: #222;
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .page-header {
+                padding: 22px 15px;
+            }
+
+            .back-button {
+                bottom: 18px;
+                padding: 12px 22px;
+                font-size: 14px;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 360° panorama -->
+    <div id="panorama"></div>
+
+    <!-- Title and subtitle -->
+    <header class="page-header">
+        <h1>Box 4</h1>
+        <p>The exhibition</p>
+    </header>
+
+    <!-- Back to main page -->
+    <a href="index.html" class="back-button">
+        &#8592; Back to Main Page
+    </a>
+
+    <!-- Initialize Pannellum -->
+    <script>
+        pannellum.viewer('panorama', {
+            type: 'equirectangular',
+            panorama: 'img/panorama.jpg',
+            autoLoad: true
+        });
+    </script>
+
+</body>
+</html>
