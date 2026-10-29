@@ -263,11 +263,10 @@
             );
             hotSpotDiv.title = args.title;
 
-           // Open the destination in a new tab
-         function openLink() {
-            window.open(args.url, '_blank', 'noopener,noreferrer');
-            }
-
+         // Open the destination in the same tab
+        function openLink() {
+            window.location.href = args.url;
+        }
     hotSpotDiv.addEventListener('click', openLink);
 
             // Also support keyboard activation
