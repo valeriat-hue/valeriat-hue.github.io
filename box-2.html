@@ -1,40 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tanatar and historical context</title>
-
-    <!-- Pannellum CSS -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css"
-    >
-
-    <!-- Pannellum JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
+    <title>Project background</title>
 
     <style>
         html, body {
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden;
             font-family: Arial, sans-serif;
         }
 
-        /* Full-screen panorama */
-        #panorama {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+        body {
+            overflow-x: hidden;
+            background: #fff;
         }
 
-        /* Top title and subtitle */
+        /* ==================================
+           NORMAL IMAGE
+           ================================== */
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .image-container img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* ==================================
+           TOP TITLE AND SUBTITLE
+           ================================== */
+
         .page-header {
             position: fixed;
             top: 0;
@@ -44,11 +51,13 @@
             padding: 30px 20px;
             text-align: center;
             color: white;
+
             background: linear-gradient(
                 to bottom,
                 rgba(0, 0, 0, 0.65),
                 rgba(0, 0, 0, 0)
             );
+
             z-index: 10;
             pointer-events: none;
         }
@@ -66,7 +75,10 @@
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
         }
 
-        /* Bottom navigation button */
+        /* ==================================
+           BACK TO MAIN PAGE BUTTON
+           ================================== */
+
         .back-button {
             position: fixed;
             bottom: 25px;
@@ -96,7 +108,128 @@
             transform: translateX(-50%) translateY(-2px);
         }
 
-        /* Mobile adjustments */
+        /* ==================================
+           HOTSPOT BUTTONS
+           ================================== */
+
+        .hotspot-button {
+            position: absolute;
+
+            /* Coordinates are set individually below */
+            left: var(--x);
+            top: var(--y);
+            transform: translate(-50%, -50%);
+
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            border-radius: 50%;
+            border: 2px solid white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 21px;
+            font-weight: bold;
+            line-height: 1;
+
+            cursor: pointer;
+            box-sizing: border-box;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+
+            transition: background 0.2s, box-shadow 0.2s;
+            z-index: 5;
+        }
+
+        .hotspot-button:hover,
+        .hotspot-button:focus-visible,
+        .hotspot-button.active {
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35),
+                        0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Information button: blue */
+
+        .info-hotspot {
+            background: #1677c8;
+        }
+
+        .info-hotspot:hover,
+        .info-hotspot.active {
+            background: #09538e;
+        }
+
+        /* Link button: green */
+
+        .link-hotspot {
+            background: #218838;
+        }
+
+        .link-hotspot:hover {
+            background: #145c26;
+        }
+
+        /* ==================================
+           HOTSPOT TOOLTIP
+           ================================== */
+
+        .hotspot-tooltip {
+            display: block;
+            visibility: hidden;
+            opacity: 0;
+
+            position: absolute;
+            left: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 220px;
+            max-width: 65vw;
+            box-sizing: border-box;
+            padding: 12px 14px;
+
+            background: rgba(0, 0, 0, 0.88);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.5;
+            text-align: left;
+
+            white-space: normal;
+            overflow-wrap: anywhere;
+            pointer-events: none;
+
+            transition: opacity 0.2s;
+            z-index: 1000;
+        }
+
+        /* Show tooltip on desktop hover */
+
+        @media (hover: hover) and (pointer: fine) {
+            .hotspot-button:hover .hotspot-tooltip {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        /* Show tooltip when activated by tap or keyboard */
+
+        .hotspot-button.active .hotspot-tooltip,
+        .hotspot-button:focus-visible .hotspot-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* ==================================
+           MOBILE ADJUSTMENTS
+           ================================== */
+
         @media (max-width: 600px) {
             .page-header {
                 padding: 22px 15px;
@@ -108,32 +241,158 @@
                 font-size: 14px;
                 white-space: nowrap;
             }
+
+            .hotspot-button {
+                width: 34px;
+                height: 34px;
+                font-size: 19px;
+            }
+
+            .hotspot-tooltip {
+                width: 170px;
+                max-width: 65vw;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- 360° panorama -->
-    <div id="panorama"></div>
+    <!-- ==================================
+         INTERACTIVE NORMAL IMAGE
+         ================================== -->
 
-    <!-- Title and subtitle -->
+    <div class="image-container">
+
+        <img
+            src="img/photo.jpg"
+            alt="Project 5050 background image"
+        >
+
+        <!-- ==================================
+             HOTSPOT 1: INFORMATION
+             ================================== -->
+
+        <button
+            class="hotspot-button info-hotspot"
+            style="--x: 30%; --y: 40%;"
+            type="button"
+            aria-label="Here is some info of the photo"
+            aria-expanded="false"
+        >
+            ?
+            <span class="hotspot-tooltip" role="tooltip">
+                Joseph Tanatar was an important scientist.
+            </span>
+        </button>
+
+        <!-- ==================================
+             HOTSPOT 2: LINK
+             ================================== -->
+
+        <a
+            class="hotspot-button link-hotspot"
+            style="--x: 70%; --y: 60%;"
+            href="https://tu-freiberg.de/tubafdigital/projekte-und-aktivitaeten/project-5050"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open more information about Project 5050"
+        >
+            &#8599;
+            <span class="hotspot-tooltip" role="tooltip">
+                Open more information about Project 5050.
+            </span>
+        </a>
+
+        <!-- ADD MORE HOTSPOTS HERE -->
+
+    </div>
+
+    <!-- ==================================
+         TITLE AND SUBTITLE
+         ================================== -->
+
     <header class="page-header">
         <h1>Project 5050</h1>
-        <p>Tanatar and historical context</p>
+        <p>Project background</p>
     </header>
 
-    <!-- Back to main page -->
+    <!-- ==================================
+         BACK TO MAIN PAGE
+         ================================== -->
+
     <a href="index.html" class="back-button">
         &#8592; Back to Main Page
     </a>
 
-    <!-- Initialize Pannellum -->
+    <!-- ==================================
+         MOBILE AND DESKTOP INTERACTIONS
+         ================================== -->
+
     <script>
-        pannellum.viewer('panorama', {
-            type: 'equirectangular',
-            panorama: 'img/panorama.jpg',
-            autoLoad: true
+        const infoHotspots = document.querySelectorAll(
+            ".info-hotspot"
+        );
+
+        infoHotspots.forEach((hotspot) => {
+
+            hotspot.addEventListener("click", () => {
+
+                const willOpen =
+                    !hotspot.classList.contains("active");
+
+                // Close all other information tooltips
+                infoHotspots.forEach((other) => {
+                    other.classList.remove("active");
+                    other.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+                });
+
+                // Toggle the selected tooltip
+                if (willOpen) {
+                    hotspot.classList.add("active");
+                    hotspot.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+                }
+            });
+
+        });
+
+        // Close tooltips when clicking outside a hotspot
+        document.addEventListener("click", (event) => {
+
+            if (event.target.closest(".info-hotspot")) {
+                return;
+            }
+
+            infoHotspots.forEach((hotspot) => {
+                hotspot.classList.remove("active");
+                hotspot.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            });
+
+        });
+
+        // Close open tooltips with the Escape key
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape") {
+                infoHotspots.forEach((hotspot) => {
+                    hotspot.classList.remove("active");
+                    hotspot.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+                });
+            }
+
         });
     </script>
 
