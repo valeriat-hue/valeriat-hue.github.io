@@ -412,8 +412,8 @@
         (function initializeGuestbook() {
             const looksUnconfigured =
                 !SUPABASE_URL.startsWith("https://") ||
-                SUPABASE_URL.includes("https://mnmcrhulcqsltczlthnx.supabase.co") ||
-                SUPABASE_PUBLISHABLE_KEY.includes("sb_publishable_hKmc6uugk9QEPulhm0_0Aw_lVR7xdK9");
+                SUPABASE_URL.includes("YOUR_SUPABASE") ||
+                SUPABASE_PUBLISHABLE_KEY.includes("YOUR_SUPABASE");
 
             if (looksUnconfigured || !window.supabase) {
                 showGuestbookSetupError();
