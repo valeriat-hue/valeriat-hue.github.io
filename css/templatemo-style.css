@@ -1187,7 +1187,14 @@ footer a:hover {
   border-bottom: 1px solid #414141;
   margin-bottom: 20px;
 }
+/* Guestbook text */
 
+.guestbook-note {
+  color: #f7f7f7;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+}
 .archives ul, .categories ul {
   margin-top: -5px;
   padding: 0;
