@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Guest Book | Galaxy</title>
+    <title>Guest Book</title>
     <meta name="description" content="Leave a message in the exhibition guest book.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -107,7 +107,7 @@
                             <section class="guestbook-panel" aria-labelledby="guestbook-form-heading">
                                 <div class="text-content">
                                     <h2 id="guestbook-form-heading">Leave a message</h2>
-                                    <p>Share a thought, a memory, or a reflection about the exhibition. Thank you for being part of it.</p>
+                                    <p>Share a thought, a memory, or a reflection about the exhibition. Thank you for being part of this!</p>
 
                                     <form id="guestbook-form" class="guestbook-form">
                                         <div>
@@ -151,10 +151,10 @@
                         <div class="col-md-12">
                             <div class="text-content">
                                 <h2>Messages from guests</h2>
-                                <p class="guestbook-count" id="guestbook-count">Only approved messages are shown here.</p>
+                                <p class="guestbook-count" id="guestbook-count">Approved messages are shown here.</p>
                             </div>
                             <div id="guestbook-messages" aria-live="polite">
-                                <p class="guestbook-loading">Loading approved messages...</p>
+                                <p class="guestbook-loading">Loading messages...</p>
                             </div>
                         </div>
                     </div>
@@ -165,16 +165,20 @@
                 <div class="side-bar">
                     <div class="archives">
                         <div class="sidebar-heding">
-                            <h2>About this guest book</h2>
+                            <h2>Thank you</h2>
                         </div>
-                        <p class="guestbook-note">Your message is saved for review. It will only appear publicly after it has been approved by the site administrator.</p>
+                        <p class="guestbook-note">Your message is saved for review. It will appear publicly as soon as is approved by the site administrator. Thank you for visiting and for sharing your thoughts and impressions!</p>
                     </div>
 
                     <div class="recent-posts">
                         <div class="sidebar-heding">
-                            <h2>Thank you</h2>
+                            <h2>About this guest book</h2>
                         </div>
-                        <p class="guestbook-note">Thank you for visiting and for sharing your thoughts. Your contribution is appreciated.</p>
+                        <p class="guestbook-note">We invite you to leave a note, share your impressions, or reflect on your thoughts in this online guestbook.
+
+It is a digital version of a physical guestbook, created to give everyone the opportunity to take part – including colleagues abroad who can explore the online exhibition, as well as anyone who was unable to attend in person but would still like to share their thoughts and impressions.
+
+We look forward to hearing from you!</p>
                     </div>
                 </div>
             </div>
@@ -199,7 +203,7 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="header-title">Say hello to <em>Galaxy</em></h3>
+                <h3 class="header-title">.</h3>
                 <div class="close-btn"><img src="img/close_contact.png" alt="Close"></div>
             </div>
             <div class="modal-body">
@@ -243,7 +247,7 @@
                         <li><a href="guest-book.html">Guest book</a></li>
                         <li><a href="impressions.html">Reflections and impressions</a></li>
                     </ul>
-                    <p>We create space for thoughts and impressions</p>
+                    
                 </div>
             </div>
         </div>
@@ -331,15 +335,15 @@
             if (!data || data.length === 0) {
                 const p = document.createElement("p");
                 p.className = "guestbook-empty";
-                p.textContent = "There are no approved messages yet. Be the first to leave one!";
+                p.textContent = "There are no messages yet. Be the first to leave one!";
                 guestbookMessages.appendChild(p);
-                guestbookCount.textContent = "Only approved messages are shown here.";
+                guestbookCount.textContent = "";
                 return;
             }
 
             guestbookCount.textContent = data.length === 1
-                ? "1 approved message"
-                : data.length + " approved messages";
+                ? "1 message"
+                : data.length + " messages";
 
             data.forEach((entry) => {
                 const article = document.createElement("article");
