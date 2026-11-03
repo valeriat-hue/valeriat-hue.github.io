@@ -1481,6 +1481,33 @@ footer a:hover {
     .timeline-item:last-child {
         padding-bottom: 0;
     }
+  
+/* =================================
+   GLOBAL BODY TITLES - ALMOST WHITE
+================================= */
+
+/* Main section titles */
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+    color: #f7f7f7 !important;
+}
+
+/* Section headings */
+body .section-heading h2,
+body .sidebar-heding h2 {
+    color: #f7f7f7 !important;
+}
+
+/* Blog and exhibition titles */
+body .text-content h2,
+body .service-item h4 {
+    color: #f7f7f7 !important;
+}
+
 }
 
 
