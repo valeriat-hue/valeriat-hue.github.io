@@ -1361,12 +1361,22 @@ footer a:hover {
   .single-blog-post .tags-share .share {
     text-align: center;
   }
-  
+
+}
+
 /* Historical timeline */
 
 .timeline-section {
-    background-color: #232323;
+    background-color: #232323 !important;
     padding: 65px 0px;
+}
+
+.timeline-section .section-heading h2 {
+    color: #ffffff !important;
+}
+
+.timeline-section .section-heading p {
+    color: #ffffff !important;
 }
 
 .timeline {
@@ -1377,7 +1387,7 @@ footer a:hover {
     margin-top: 40px;
 }
 
-/* Connecting horizontal line */
+/* Connecting line */
 
 .timeline::before {
     content: '';
@@ -1385,11 +1395,11 @@ footer a:hover {
     top: 6px;
     left: 0;
     width: 100%;
-    height: 1px;
-    background-color: #555;
+    height: 2px;
+    background-color: #f4dd5b;
 }
 
-/* Individual timeline entries */
+/* Timeline entries */
 
 .timeline-item {
     position: relative;
@@ -1397,7 +1407,7 @@ footer a:hover {
     padding: 30px 12px 0px;
 }
 
-/* Yellow timeline dots */
+/* Yellow dots */
 
 .timeline-item::before {
     content: '';
@@ -1409,33 +1419,35 @@ footer a:hover {
     height: 12px;
     background-color: #f4dd5b;
     border-radius: 50%;
-    z-index: 1;
+    z-index: 2;
 }
 
-/* Timeline text */
+/* Years */
+
+.timeline-content strong {
+    display: block;
+    color: #f4dd5b !important;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+/* Descriptions */
+
+.timeline-content p {
+    color: #ffffff !important;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 26px;
+    margin: 0;
+}
 
 .timeline-content {
     text-align: center;
 }
 
-.timeline-content strong {
-    display: block;
-    color: #f4dd5b;
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
-}
-
-.timeline-content p {
-    color: #bbb;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 25px;
-    margin: 0;
-}
-
-/* Mobile version: vertical timeline */
+/* Mobile version */
 
 @media (max-width: 768px) {
 
@@ -1448,7 +1460,7 @@ footer a:hover {
     .timeline::before {
         top: 0;
         left: 5px;
-        width: 1px;
+        width: 2px;
         height: 100%;
     }
 
@@ -1470,5 +1482,6 @@ footer a:hover {
         padding-bottom: 0;
     }
 }
+
 
 
