@@ -1361,5 +1361,115 @@ footer a:hover {
   .single-blog-post .tags-share .share {
     text-align: center;
   }
+  
+/* Historical timeline */
+
+.timeline-section {
+    background-color: #232323;
+    padding: 65px 0px;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* Connecting horizontal line */
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #555;
+}
+
+/* Individual timeline entries */
+
+.timeline-item {
+    position: relative;
+    flex: 1;
+    padding: 30px 12px 0px;
+}
+
+/* Yellow timeline dots */
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #f4dd5b;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Timeline text */
+
+.timeline-content {
+    text-align: center;
+}
+
+.timeline-content strong {
+    display: block;
+    color: #f4dd5b;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    color: #bbb;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 25px;
+    margin: 0;
+}
+
+/* Mobile version: vertical timeline */
+
+@media (max-width: 768px) {
+
+    .timeline {
+        flex-direction: column;
+        padding-left: 25px;
+        margin-top: 30px;
+    }
+
+    .timeline::before {
+        top: 0;
+        left: 5px;
+        width: 1px;
+        height: 100%;
+    }
+
+    .timeline-item {
+        padding: 0px 0px 35px 25px;
+    }
+
+    .timeline-item::before {
+        top: 5px;
+        left: -25px;
+        transform: none;
+    }
+
+    .timeline-content {
+        text-align: left;
+    }
+
+    .timeline-item:last-child {
+        padding-bottom: 0;
+    }
+}
+
 
 }
