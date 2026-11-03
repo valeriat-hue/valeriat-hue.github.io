@@ -1549,5 +1549,34 @@ body .service-item h4 {
     }
 
 }
+.impressions-page .quote-section {
+    background-color: #232323;
+}
 
+.impressions-page .exhibition-quote {
+    color: #f7f7f7 !important;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.6;
+
+    border-left: 4px solid #f7f7f7;
+    padding: 15px 25px;
+
+    margin: 30px auto;
+    max-width: 900px;
+
+    font-style: italic;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 768px) {
+
+    .impressions-page .exhibition-quote {
+        font-size: 19px;
+        padding: 12px 18px;
+        margin: 20px auto;
+    }
+
+}
 
