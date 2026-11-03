@@ -1481,12 +1481,12 @@ footer a:hover {
     .timeline-item:last-child {
         padding-bottom: 0;
     }
+  }
   
 /* =================================
    GLOBAL BODY TITLES - ALMOST WHITE
 ================================= */
 
-/* Main section titles */
 body h1,
 body h2,
 body h3,
@@ -1509,6 +1509,45 @@ body .service-item h4 {
 }
 
 }
+/* =================================
+   VIDEO - IMPRESSIONS PAGE ONLY
+================================= */
 
+.impressions-page .video-section {
+    background-color: #232323;
+    padding: 65px 0px;
+}
+
+.impressions-page .exhibition-video {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.impressions-page .exhibition-video video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 75vh;
+    margin: 0 auto;
+    object-fit: contain;
+    background-color: #000;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 768px) {
+
+    .impressions-page .video-section {
+        padding: 35px 0px;
+    }
+
+    .impressions-page .exhibition-video video {
+        max-height: 65vh;
+    }
+
+}
 
 
