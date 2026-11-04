@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,73 +6,201 @@
 
     <title>Partnership Dnipro and TUBAF</title>
 
+    <!-- PROJECT 5050 FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900"
+          rel="stylesheet">
+
     <style>
+
+        /* ==================================
+           GENERAL STYLE
+           ================================== */
+
         html, body {
             width: 100%;
             min-height: 100%;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Kanit', sans-serif;
         }
 
         body {
             overflow-x: hidden;
             background: #fff;
+            color: #333;
+            font-weight: 300;
         }
+
 
         /* ==================================
-           NORMAL IMAGE
+           OPENING FULL-WIDTH IMAGE
            ================================== */
 
-        .image-container {
-            position: relative;
-            width: 100%;
-            max-width: 1600px;
+      .image-container {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+    object-position: center center;
+}
+
+
+        /* ==================================
+           TEXT SECTION
+           ================================== */
+
+        .text-section {
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 75px 30px;
+            box-sizing: border-box;
         }
 
-        .image-container img {
+        .text-section h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 400;
+            margin: 0 0 28px;
+            color: #222;
+            text-align: left;
+            letter-spacing: 0.5px;
+        }
+
+        .text-section h2 em {
+            color: #c9a43b;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .text-section p {
+            font-size: 17px;
+            line-height: 1.9;
+            font-weight: 300;
+            margin: 0 0 22px;
+            color: #666;
+            text-align: justify;
+        }
+
+
+        /* ==================================
+           SMALL PHOTOGRAPH / GALLERY
+           ================================== */
+
+        .gallery-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 30px 100px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .gallery-section h2 {
+            font-size: clamp(26px, 3vw, 34px);
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #222;
+            text-align: left;
+        }
+
+        .gallery-section h2 em {
+            color: #c9a43b;
+            font-style: normal;
+        }
+
+        .photo-trigger {
+            display: inline-block;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: zoom-in;
+            max-width: 560px;
+            width: 100%;
+        }
+
+        .photo-trigger img {
             display: block;
             width: 100%;
             height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 2px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.14);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+
+        .photo-trigger:hover img {
+            transform: scale(1.02);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+        }
+
+        .photo-caption {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 300;
+            color: #999;
+            letter-spacing: 0.3px;
+        }
+
 
         /* ==================================
-           TOP TITLE AND SUBTITLE
+           ENLARGED PHOTO / LIGHTBOX
            ================================== */
 
-        .page-header {
+        .lightbox {
+            display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+            inset: 0;
+            z-index: 1000;
+
+            background: rgba(15,15,15,0.96);
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 55px 20px;
             box-sizing: border-box;
-            padding: 30px 20px;
-            text-align: center;
-            color: white;
-
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.65),
-                rgba(0, 0, 0, 0)
-            );
-
-            z-index: 10;
-            pointer-events: none;
         }
 
-        .page-header h1 {
-            margin: 0 0 8px;
-            font-size: clamp(26px, 4vw, 42px);
-            font-weight: 700;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        .lightbox.open {
+            display: flex;
         }
 
-        .page-header p {
-            margin: 0;
-            font-size: clamp(14px, 2vw, 19px);
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
         }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+
+            color: #fff;
+            background: transparent;
+            border: none;
+
+            font-family: 'Kanit', sans-serif;
+            font-size: 42px;
+            font-weight: 200;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: #c9a43b;
+        }
+
 
         /* ==================================
            BACK TO MAIN PAGE BUTTON
@@ -87,290 +214,276 @@
             z-index: 20;
 
             display: inline-block;
-            padding: 14px 26px;
-            border-radius: 30px;
+            padding: 13px 28px;
+            border-radius: 2px;
 
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(25,25,25,0.9);
             color: white;
             text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
 
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'Kanit', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
 
-            transition: background 0.3s, transform 0.3s;
+            border: 1px solid rgba(201,164,59,0.7);
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+
+            transition: background 0.3s, color 0.3s;
         }
 
         .back-button:hover {
-            background: rgba(255, 255, 255, 0.95);
+            background: #c9a43b;
             color: #222;
-            transform: translateX(-50%) translateY(-2px);
         }
 
-        /* ==================================
-           HOTSPOT BUTTONS
-           ================================== */
-
-        .hotspot-button {
-            position: absolute;
-
-            /* Coordinates are set individually below */
-            left: var(--x);
-            top: var(--y);
-            transform: translate(-50%, -50%);
-
-            width: 38px;
-            height: 38px;
-            padding: 0;
-            border-radius: 50%;
-            border: 2px solid white;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 21px;
-            font-weight: bold;
-            line-height: 1;
-
-            cursor: pointer;
-            box-sizing: border-box;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-
-            transition: background 0.2s, box-shadow 0.2s;
-            z-index: 5;
-        }
-
-        .hotspot-button:hover,
-        .hotspot-button:focus-visible,
-        .hotspot-button.active {
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35),
-                        0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Information button: blue */
-
-        .info-hotspot {
-            background: #1677c8;
-        }
-
-        .info-hotspot:hover,
-        .info-hotspot.active {
-            background: #09538e;
-        }
-
-        /* Link button: green */
-
-        .link-hotspot {
-            background: #218838;
-        }
-
-        .link-hotspot:hover {
-            background: #145c26;
-        }
-
-        /* ==================================
-           HOTSPOT TOOLTIP
-           ================================== */
-
-        .hotspot-tooltip {
-            display: block;
-            visibility: hidden;
-            opacity: 0;
-
-            position: absolute;
-            left: 48px;
-            top: 50%;
-            transform: translateY(-50%);
-
-            width: 220px;
-            max-width: 65vw;
-            box-sizing: border-box;
-            padding: 12px 14px;
-
-            background: rgba(0, 0, 0, 0.88);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 8px;
-
-            font-size: 14px;
-            font-weight: normal;
-            line-height: 1.5;
-            text-align: left;
-
-            white-space: normal;
-            overflow-wrap: anywhere;
-            pointer-events: none;
-
-            transition: opacity 0.2s;
-            z-index: 1000;
-        }
-
-        /* Show tooltip on desktop hover */
-
-        @media (hover: hover) and (pointer: fine) {
-            .hotspot-button:hover .hotspot-tooltip {
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-
-        /* Show tooltip when activated by tap or keyboard */
-
-        .hotspot-button.active .hotspot-tooltip,
-        .hotspot-button:focus-visible .hotspot-tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
 
         /* ==================================
            MOBILE ADJUSTMENTS
            ================================== */
 
         @media (max-width: 600px) {
-            .page-header {
-                padding: 22px 15px;
+
+            .text-section {
+                padding: 45px 22px;
+            }
+
+            .text-section p {
+                font-size: 16px;
+                line-height: 1.8;
+            }
+
+            .gallery-section {
+                padding: 15px 22px 85px;
             }
 
             .back-button {
                 bottom: 18px;
-                padding: 12px 22px;
+                padding: 11px 22px;
                 font-size: 14px;
                 white-space: nowrap;
             }
 
-            .hotspot-button {
-                width: 34px;
-                height: 34px;
-                font-size: 19px;
+            .lightbox {
+                padding: 45px 10px;
             }
 
-            .hotspot-tooltip {
-                width: 170px;
-                max-width: 65vw;
-                font-size: 13px;
+            .lightbox-close {
+                top: 12px;
+                right: 15px;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
+
     <!-- ==================================
-         INTERACTIVE NORMAL IMAGE
+         1. FULL-WIDTH OPENING IMAGE
          ================================== -->
 
     <div class="image-container">
 
         <img
-            src="img/5_box.png"
-            alt="Project 5050 background image"
+            src="img/box5.jpg"
+            alt="Project background"
         >
-
-        <!-- ==================================
-             HOTSPOT 1: INFORMATION
-             ================================== -->
-
-        
-
-        <!-- ==================================
-             HOTSPOT 2: LINK
-             ================================== -->
-
-       
-
-        <!-- ADD MORE HOTSPOTS HERE -->
 
     </div>
 
+
     <!-- ==================================
-         TITLE AND SUBTITLE
+         2. TEXT SECTION
          ================================== -->
 
-    <header class="page-header">
-        <h1></h1>
-        <p></p>
-    </header>
+    <section class="text-section">
+
+        <h2>STAGE 5. DEVELOPMENT OF COOPERATION – PRESENT DAY <em>From Historical Academic Ties to Joint European Projects</em></h2>
+
+        <p>
+            The final stage brings us to the present day and demonstrates how more than a century of historical connections has developed into a modern international partnership.
+During the twentieth century, academic contacts between our universities continued. For example, in 1965, a delegation from the Dnipropetrovsk Mining Institute participated in the celebration of the 200th anniversary of Bergakademie Freiberg. Further visits and academic exchanges took place during the 1970s and 1980s.
+However, a new stage in bilateral cooperation began after Ukraine gained independence, with more frequent visits, student exchanges and opportunities for joint academic activities.
+
+        </p>
+
+        <p>
+            A particularly important transformation took place after 2022, when Russia's full-scale invasion created unprecedented challenges for Ukrainian higher education.
+Universities had to adapt rapidly. Teaching moved online, students and academic staff faced displacement and uncertainty, and maintaining international academic connections became especially important.
+TU Bergakademie Freiberg responded by opening access to digital courses in engineering, natural sciences and economics. Further cooperation was developed with the support of the DAAD-Ostpartnerschaften programme.
+One significant initiative focused on the digitisation of rare petrographic and mineragraphic collections held by Dnipro University of Technology.
+This initiative had two main objectives: first, to make valuable collections accessible to students studying remotely; and second, to preserve and document rare rock and mineral specimens that could be important for future scientific research.
+The project also provided opportunities for postgraduate students to visit Freiberg, work with modern laboratory equipment and develop their practical research skills.
+
+        </p>
+
+        <p>
+            Another important direction is Collaborative Online International Learning, or COIL.
+In 2025, students from the Marketing specialisation created a video exploring the historical connections between the two universities.
+In 2026, new COIL initiatives were launched, including Project 5050 itself.
+Four interdisciplinary international student groups, involving students of geology, marketing, history and archaeology from both universities, are working together on archival research, the study of Joseph Tanatar's scientific heritage, the digitisation of historical documents and the restoration of classical mineralogical methods and instruments.
+The partnership also continues through wider European cooperation.
+Joint initiatives include projects such as SUUUpoRT, RECLAIM, Erasmus+ EdUp, EMINReM and EdAccession, as well as international Master's programmes such as Advanced Mineral Resources Development and ENTER.
+These initiatives demonstrate that cooperation today extends far beyond traditional academic exchanges. It includes educational innovation, research, digital technologies, institutional development and the preparation of specialists for contemporary challenges.
+But there is another aspect that we consider particularly important.
+International cooperation is not only about projects, funding or formal agreements. It is also about people, mutual trust and the ability to support each other in difficult circumstances.
+The experience of recent years has shown that our partnership is something we can rely on. It has helped maintain academic continuity, strengthen communication and create new opportunities for students and researchers.
+And this is perhaps the most important message of the final stage:
+What began more than a century ago as scientific and educational cooperation has developed into a living partnership based on trust, resilience and shared responsibility.
+Project 5050 connects our historical heritage with our present-day activities and future ambitions.
+       </p>
+
+    </section>
+
 
     <!-- ==================================
-         BACK TO MAIN PAGE
+         3. PHOTOGRAPH SECTION
+         ================================== -->
+
+    <section class="gallery-section">
+
+        <h2>Clean poster image</h2>
+
+        <button
+            class="photo-trigger"
+            id="photoTrigger"
+            aria-label="Enlarge photograph"
+        >
+
+            <img
+                src="img/5_box.png"
+                alt="Historical photograph"
+            >
+
+        </button>
+
+        <p class="photo-caption">
+            Click on the photograph to enlarge it.
+        </p>
+
+    </section>
+
+
+    <!-- ==================================
+         4. ENLARGED PHOTOGRAPH
+         ================================== -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Enlarged photograph"
+        aria-hidden="true"
+    >
+
+        <button
+            class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Close enlarged photograph"
+        >
+            &times;
+        </button>
+
+        <img
+            src="img/5_box.png"
+            alt="Enlarged historical photograph"
+        >
+
+    </div>
+
+
+    <!-- ==================================
+         5. BACK TO MAIN PAGE BUTTON
          ================================== -->
 
     <a href="index.html" class="back-button">
         &#8592; Back to Main Page
     </a>
 
+
     <!-- ==================================
-         MOBILE AND DESKTOP INTERACTIONS
+         6. PHOTO ENLARGEMENT INTERACTION
          ================================== -->
 
     <script>
-        const infoHotspots = document.querySelectorAll(
-            ".info-hotspot"
+
+        const photoTrigger =
+            document.getElementById("photoTrigger");
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxClose =
+            document.getElementById("lightboxClose");
+
+
+        function openLightbox() {
+
+            lightbox.classList.add("open");
+
+            lightbox.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.style.overflow = "hidden";
+
+            lightboxClose.focus();
+        }
+
+
+        function closeLightbox() {
+
+            lightbox.classList.remove("open");
+
+            lightbox.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.style.overflow = "";
+
+            photoTrigger.focus();
+        }
+
+
+        photoTrigger.addEventListener(
+            "click",
+            openLightbox
         );
 
-        infoHotspots.forEach((hotspot) => {
 
-            hotspot.addEventListener("click", () => {
+        lightboxClose.addEventListener(
+            "click",
+            closeLightbox
+        );
 
-                const willOpen =
-                    !hotspot.classList.contains("active");
 
-                // Close all other information tooltips
-                infoHotspots.forEach((other) => {
-                    other.classList.remove("active");
-                    other.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-                });
+        lightbox.addEventListener("click", (event) => {
 
-                // Toggle the selected tooltip
-                if (willOpen) {
-                    hotspot.classList.add("active");
-                    hotspot.setAttribute(
-                        "aria-expanded",
-                        "true"
-                    );
-                }
-            });
-
-        });
-
-        // Close tooltips when clicking outside a hotspot
-        document.addEventListener("click", (event) => {
-
-            if (event.target.closest(".info-hotspot")) {
-                return;
+            if (event.target === lightbox) {
+                closeLightbox();
             }
 
-            infoHotspots.forEach((hotspot) => {
-                hotspot.classList.remove("active");
-                hotspot.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-            });
-
         });
 
-        // Close open tooltips with the Escape key
+
         document.addEventListener("keydown", (event) => {
 
-            if (event.key === "Escape") {
-                infoHotspots.forEach((hotspot) => {
-                    hotspot.classList.remove("active");
-                    hotspot.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-                });
+            if (
+                event.key === "Escape" &&
+                lightbox.classList.contains("open")
+            ) {
+                closeLightbox();
             }
 
         });
+
     </script>
 
 </body>
