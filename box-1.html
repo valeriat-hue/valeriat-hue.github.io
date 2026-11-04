@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,14 +18,14 @@
         body {
             overflow-x: hidden;
             background: #fff;
+            color: #222;
         }
 
         /* ==================================
-           NORMAL IMAGE
+           OPENING FULL-WIDTH IMAGE
            ================================== */
 
         .image-container {
-            position: relative;
             width: 100%;
             max-width: 1600px;
             margin: 0 auto;
@@ -39,40 +38,127 @@
         }
 
         /* ==================================
-           TOP TITLE AND SUBTITLE
+           TEXT SECTION
            ================================== */
 
-        .page-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+        .text-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 70px 30px;
             box-sizing: border-box;
-            padding: 30px 20px;
+        }
+
+        .text-section h2 {
+            font-size: clamp(26px, 4vw, 36px);
+            margin: 0 0 25px;
+            color: #222;
+            text-align: left;
+        }
+
+        .text-section p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 0 0 20px;
+            color: #444;
+            text-align: justify;
+        }
+
+        /* ==================================
+           SMALL PHOTOGRAPH / GALLERY
+           ================================== */
+
+        .gallery-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 30px 90px;
+            box-sizing: border-box;
             text-align: center;
+        }
+
+        .gallery-section h2 {
+            font-size: clamp(24px, 3vw, 32px);
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .photo-trigger {
+            display: inline-block;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: zoom-in;
+            max-width: 560px;
+            width: 100%;
+        }
+
+        .photo-trigger img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.2);
+            transition: transform 0.25s;
+        }
+
+        .photo-trigger:hover img {
+            transform: scale(1.02);
+        }
+
+        .photo-caption {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* ==================================
+           ENLARGED PHOTO / LIGHTBOX
+           ================================== */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            background: rgba(0,0,0,0.92);
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 55px 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+
             color: white;
+            background: transparent;
+            border: none;
 
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.65),
-                rgba(0, 0, 0, 0)
-            );
-
-            z-index: 10;
-            pointer-events: none;
+            font-size: 42px;
+            cursor: pointer;
+            line-height: 1;
         }
 
-        .page-header h1 {
-            margin: 0 0 8px;
-            font-size: clamp(26px, 4vw, 42px);
-            font-weight: 700;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-        }
-
-        .page-header p {
-            margin: 0;
-            font-size: clamp(14px, 2vw, 19px);
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+        .lightbox-close:hover {
+            color: #ccc;
         }
 
         /* ==================================
@@ -90,140 +176,22 @@
             padding: 14px 26px;
             border-radius: 30px;
 
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0,0,0,0.75);
             color: white;
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
 
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.3);
 
             transition: background 0.3s, transform 0.3s;
         }
 
         .back-button:hover {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.95);
             color: #222;
             transform: translateX(-50%) translateY(-2px);
-        }
-
-        /* ==================================
-           HOTSPOT BUTTONS
-           ================================== */
-
-        .hotspot-button {
-            position: absolute;
-
-            /* Coordinates are set individually below */
-            left: var(--x);
-            top: var(--y);
-            transform: translate(-50%, -50%);
-
-            width: 38px;
-            height: 38px;
-            padding: 0;
-            border-radius: 50%;
-            border: 2px solid white;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 21px;
-            font-weight: bold;
-            line-height: 1;
-
-            cursor: pointer;
-            box-sizing: border-box;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-
-            transition: background 0.2s, box-shadow 0.2s;
-            z-index: 5;
-        }
-
-        .hotspot-button:hover,
-        .hotspot-button:focus-visible,
-        .hotspot-button.active {
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35),
-                        0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Information button: blue */
-
-        .info-hotspot {
-            background: #1677c8;
-        }
-
-        .info-hotspot:hover,
-        .info-hotspot.active {
-            background: #09538e;
-        }
-
-        /* Link button: green */
-
-        .link-hotspot {
-            background: #218838;
-        }
-
-        .link-hotspot:hover {
-            background: #145c26;
-        }
-
-        /* ==================================
-           HOTSPOT TOOLTIP
-           ================================== */
-
-        .hotspot-tooltip {
-            display: block;
-            visibility: hidden;
-            opacity: 0;
-
-            position: absolute;
-            left: 48px;
-            top: 50%;
-            transform: translateY(-50%);
-
-            width: 220px;
-            max-width: 65vw;
-            box-sizing: border-box;
-            padding: 12px 14px;
-
-            background: rgba(0, 0, 0, 0.88);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 8px;
-
-            font-size: 14px;
-            font-weight: normal;
-            line-height: 1.5;
-            text-align: left;
-
-            white-space: normal;
-            overflow-wrap: anywhere;
-            pointer-events: none;
-
-            transition: opacity 0.2s;
-            z-index: 1000;
-        }
-
-        /* Show tooltip on desktop hover */
-
-        @media (hover: hover) and (pointer: fine) {
-            .hotspot-button:hover .hotspot-tooltip {
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-
-        /* Show tooltip when activated by tap or keyboard */
-
-        .hotspot-button.active .hotspot-tooltip,
-        .hotspot-button:focus-visible .hotspot-tooltip {
-            visibility: visible;
-            opacity: 1;
         }
 
         /* ==================================
@@ -231,8 +199,18 @@
            ================================== */
 
         @media (max-width: 600px) {
-            .page-header {
-                padding: 22px 15px;
+
+            .text-section {
+                padding: 45px 22px;
+            }
+
+            .text-section p {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+
+            .gallery-section {
+                padding: 15px 22px 80px;
             }
 
             .back-button {
@@ -242,130 +220,215 @@
                 white-space: nowrap;
             }
 
-            .hotspot-button {
-                width: 34px;
-                height: 34px;
-                font-size: 19px;
+            .lightbox {
+                padding: 45px 10px;
             }
 
-            .hotspot-tooltip {
-                width: 170px;
-                max-width: 65vw;
-                font-size: 13px;
+            .lightbox-close {
+                top: 12px;
+                right: 15px;
             }
         }
+
     </style>
 </head>
 
 <body>
 
     <!-- ==================================
-         INTERACTIVE NORMAL IMAGE
+         1. FULL-WIDTH OPENING IMAGE
          ================================== -->
 
     <div class="image-container">
 
         <img
-            src="img/1_box.png"
-            alt="Tanatar and historical context"
+            src="img/box1.jpg"
+            alt="Project background"
         >
 
-        <!-- ==================================
-             HOTSPOT 1: INFORMATION
-             ================================== -->
+    </div>
 
-     
 
-        <!-- ==================================
-             HOTSPOT 2: LINK
-             ================================== -->
-
-</div>
     <!-- ==================================
-         TITLE AND SUBTITLE
+         2. TEXT SECTION
          ================================== -->
 
-    <header class="page-header">
-        <h1></h1>
-        <p></p>
-    </header>
+    <section class="text-section">
+
+        <h2>STAGE 1. OVER 100 YEARS OF COOPERATION
+From Historical Connections to Academic Partnership
+</h2>
+
+        <p>
+            Let us begin with the history of cooperation between two universities: Dnipro University of Technology in Ukraine and TU Bergakademie Freiberg in Germany.
+Although the official institutional partnership developed over time, its roots go back to the second half of the nineteenth century.
+One of the key figures in this story was Oleksandr Pol, a prominent entrepreneur and public figure who discovered significant iron ore deposits near Kryvyi Rih in 1866. Recognising the importance of these discoveries, he turned to specialists at the Freiberg Mining Academy for scientific assistance.
+Professor Carl Bernhard von Cotta conducted chemical and mineralogical analyses of the ore samples. Following these investigations, the German engineer Leo Strippelmann was invited to explore the deposits in the Kryvyi Rih region between 1872 and 1874. His research confirmed the richness of these iron ore resources.
+
+        </p>
+
+        <p>
+            These discoveries became an important foundation for the industrial development of the region. The railway connection established in 1884 between the iron ore deposits of Kryvyi Rih and the coal resources of Donbas further contributed to the development of metallurgy.
+Another important milestone came in 1899, when the Katerynoslav Higher Mining School was established. It became the first higher education institution in the region and the direct predecessor of today's Dnipro University of Technology.
+The academic connection with Freiberg continued through the exchange of knowledge, professional training and scientific contacts. Many engineers and future university lecturers had undertaken internships or further studies abroad, including at Bergakademie Freiberg.
+
+        </p>
+
+        <p>
+            This historical background demonstrates that cooperation between our universities was not created by a formal agreement alone. It developed from shared scientific interests and a common understanding of the importance of mining education and technological progress.
+        </p>
+
+    </section>
+
 
     <!-- ==================================
-         BACK TO MAIN PAGE
+         3. PHOTOGRAPH SECTION
+         ================================== -->
+
+    <section class="gallery-section">
+
+        <h2>Clean poster image</h2>
+
+        <button
+            class="photo-trigger"
+            id="photoTrigger"
+            aria-label="Enlarge photograph"
+        >
+
+            <img
+                src="img/1_box.png"
+                alt="Historical photograph"
+            >
+
+        </button>
+
+        <p class="photo-caption">
+            Click on the photograph to enlarge it.
+        </p>
+
+    </section>
+
+
+    <!-- ==================================
+         4. ENLARGED PHOTOGRAPH
+         ================================== -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Enlarged photograph"
+        aria-hidden="true"
+    >
+
+        <button
+            class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Close enlarged photograph"
+        >
+            &times;
+        </button>
+
+        <img
+            src="img/your-photo.jpg"
+            alt="Enlarged historical photograph"
+        >
+
+    </div>
+
+
+    <!-- ==================================
+         5. BACK TO MAIN PAGE BUTTON
          ================================== -->
 
     <a href="index.html" class="back-button">
         &#8592; Back to Main Page
     </a>
 
+
     <!-- ==================================
-         MOBILE AND DESKTOP INTERACTIONS
+         6. PHOTO ENLARGEMENT INTERACTION
          ================================== -->
 
     <script>
-        const infoHotspots = document.querySelectorAll(
-            ".info-hotspot"
+
+        const photoTrigger =
+            document.getElementById("photoTrigger");
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxClose =
+            document.getElementById("lightboxClose");
+
+
+        function openLightbox() {
+
+            lightbox.classList.add("open");
+
+            lightbox.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.style.overflow = "hidden";
+
+            lightboxClose.focus();
+        }
+
+
+        function closeLightbox() {
+
+            lightbox.classList.remove("open");
+
+            lightbox.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.style.overflow = "";
+
+            photoTrigger.focus();
+        }
+
+
+        photoTrigger.addEventListener(
+            "click",
+            openLightbox
         );
 
-        infoHotspots.forEach((hotspot) => {
 
-            hotspot.addEventListener("click", () => {
+        lightboxClose.addEventListener(
+            "click",
+            closeLightbox
+        );
 
-                const willOpen =
-                    !hotspot.classList.contains("active");
 
-                // Close all other information tooltips
-                infoHotspots.forEach((other) => {
-                    other.classList.remove("active");
-                    other.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-                });
+        // Close when clicking outside the photograph
 
-                // Toggle the selected tooltip
-                if (willOpen) {
-                    hotspot.classList.add("active");
-                    hotspot.setAttribute(
-                        "aria-expanded",
-                        "true"
-                    );
-                }
-            });
+        lightbox.addEventListener("click", (event) => {
 
-        });
-
-        // Close tooltips when clicking outside a hotspot
-        document.addEventListener("click", (event) => {
-
-            if (event.target.closest(".info-hotspot")) {
-                return;
+            if (event.target === lightbox) {
+                closeLightbox();
             }
 
-            infoHotspots.forEach((hotspot) => {
-                hotspot.classList.remove("active");
-                hotspot.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-            });
-
         });
 
-        // Close open tooltips with the Escape key
+
+        // Close with Escape key
+
         document.addEventListener("keydown", (event) => {
 
-            if (event.key === "Escape") {
-                infoHotspots.forEach((hotspot) => {
-                    hotspot.classList.remove("active");
-                    hotspot.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-                });
+            if (
+                event.key === "Escape" &&
+                lightbox.classList.contains("open")
+            ) {
+                closeLightbox();
             }
 
         });
+
     </script>
 
 </body>
