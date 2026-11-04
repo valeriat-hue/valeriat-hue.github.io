@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exposition</title>
+
+    <!-- PROJECT 5050 FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900"
+          rel="stylesheet">
+
+    <style>
+
+        /* ==================================
+           GENERAL STYLE
+           ================================== */
+
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: #fff;
+            color: #333;
+            font-weight: 300;
+        }
+
+
+        /* ==================================
+           OPENING FULL-WIDTH IMAGE
+           ================================== */
+
+      .image-container {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+    object-position: center center;
+}
+
+
+        /* ==================================
+           TEXT SECTION
+           ================================== */
+
+        .text-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 75px 30px;
+            box-sizing: border-box;
+        }
+
+        .text-section h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 400;
+            margin: 0 0 28px;
+            color: #222;
+            text-align: left;
+            letter-spacing: 0.5px;
+        }
+
+        .text-section h2 em {
+            color: #c9a43b;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .text-section p {
+            font-size: 17px;
+            line-height: 1.9;
+            font-weight: 300;
+            margin: 0 0 22px;
+            color: #666;
+            text-align: justify;
+        }
+
+
+        /* ==================================
+           SMALL PHOTOGRAPH / GALLERY
+           ================================== */
+
+        .gallery-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 30px 100px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .gallery-section h2 {
+            font-size: clamp(26px, 3vw, 34px);
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #222;
+            text-align: left;
+        }
+
+        .gallery-section h2 em {
+            color: #c9a43b;
+            font-style: normal;
+        }
+
+        .photo-trigger {
+            display: inline-block;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: zoom-in;
+            max-width: 560px;
+            width: 100%;
+        }
+
+        .photo-trigger img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 2px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.14);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .photo-trigger:hover img {
+            transform: scale(1.02);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+        }
+
+        .photo-caption {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 300;
+            color: #999;
+            letter-spacing: 0.3px;
+        }
+
+
+        /* ==================================
+           ENLARGED PHOTO / LIGHTBOX
+           ================================== */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            background: rgba(15,15,15,0.96);
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 55px 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+
+            color: #fff;
+            background: transparent;
+            border: none;
+
+            font-family: 'Kanit', sans-serif;
+            font-size: 42px;
+            font-weight: 200;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: #c9a43b;
+        }
+
+
+        /* ==================================
+           BACK TO MAIN PAGE BUTTON
+           ================================== */
+
+        .back-button {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+
+            display: inline-block;
+            padding: 13px 28px;
+            border-radius: 2px;
+
+            background: rgba(25,25,25,0.9);
+            color: white;
+            text-decoration: none;
+
+            font-family: 'Kanit', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+
+            border: 1px solid rgba(201,164,59,0.7);
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .back-button:hover {
+            background: #c9a43b;
+            color: #222;
+        }
+
+
+        /* ==================================
+           MOBILE ADJUSTMENTS
+           ================================== */
+
+        @media (max-width: 600px) {
+
+            .text-section {
+                padding: 45px 22px;
+            }
+
+            .text-section p {
+                font-size: 16px;
+                line-height: 1.8;
+            }
+
+            .gallery-section {
+                padding: 15px 22px 85px;
+            }
+
+            .back-button {
+                bottom: 18px;
+                padding: 11px 22px;
+                font-size: 14px;
+                white-space: nowrap;
+            }
+
+            .lightbox {
+                padding: 45px 10px;
+            }
+
+            .lightbox-close {
+                top: 12px;
+                right: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ==================================
+         1. FULL-WIDTH OPENING IMAGE
+         ================================== -->
+
+    <div class="image-container">
+
+        <img
+            src="img/IMG_1665.jpeg"
+            alt="Project background"
+        >
+
+    </div>
+
+
+    <!-- ==================================
+         2. TEXT SECTION
+  
+
+
+    <!-- ==================================
+         5. BACK TO MAIN PAGE BUTTON
+         ================================== -->
+
+    <a href="index.html" class="back-button">
+        &#8592; Back to Main Page
+    </a>
+
+
+    <!-- ==================================
+         6. PHOTO ENLARGEMENT INTERACTION
+         ================================== -->
+
+    <script>
+
+        const photoTrigger =
+            document.getElementById("photoTrigger");
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxClose =
+            document.getElementById("lightboxClose");
+
+
+        function openLightbox() {
+
+            lightbox.classList.add("open");
+
+            lightbox.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.style.overflow = "hidden";
+
+            lightboxClose.focus();
+        }
+
+
+        function closeLightbox() {
+
+            lightbox.classList.remove("open");
+
+            lightbox.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.style.overflow = "";
+
+            photoTrigger.focus();
+        }
+
+
+        photoTrigger.addEventListener(
+            "click",
+            openLightbox
+        );
+
+
+        lightboxClose.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+
+        lightbox.addEventListener("click", (event) => {
+
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+
+        });
+
+
+        document.addEventListener("keydown", (event) => {
+
+            if (
+                event.key === "Escape" &&
+                lightbox.classList.contains("open")
+            ) {
+                closeLightbox();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
