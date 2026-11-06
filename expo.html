@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Project 5050 Exposition</title>
-
+    <title>Project 5050 Exhibition</title>
+<link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet">
     <style>
         html, body {
             width: 100%;
             min-height: 100%;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Kanit', sans-serif;
         }
 
         body {
@@ -41,38 +42,54 @@
            TOP TITLE AND SUBTITLE
            ================================== */
 
-        .page-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            box-sizing: border-box;
-            padding: 30px 20px;
-            text-align: center;
-            color: white;
+   .page-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
 
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.65),
-                rgba(0, 0, 0, 0)
-            );
+    padding: 55px 20px 70px;
+    text-align: center;
 
-            z-index: 10;
-            pointer-events: none;
-        }
+    color: white;
 
-        .page-header h1 {
-            margin: 0 0 8px;
-            font-size: clamp(26px, 4vw, 42px);
-            font-weight: 700;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-        }
+    background: linear-gradient(
+        to bottom,
+        rgba(15, 15, 15, 0.75),
+        rgba(15, 15, 15, 0)
+    );
 
-        .page-header p {
-            margin: 0;
-            font-size: clamp(14px, 2vw, 19px);
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
-        }
+    z-index: 10;
+    pointer-events: none;
+}
+
+.page-header h1 {
+    margin: 0 0 12px;
+
+    font-family: 'Kanit', sans-serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 400;
+
+    letter-spacing: 2px;
+    line-height: 1.2;
+
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.8);
+}
+
+.page-header p {
+    margin: 0;
+
+    font-family: 'Kanit', sans-serif;
+    font-size: clamp(15px, 2vw, 22px);
+    font-weight: 300;
+
+    letter-spacing: 1px;
+
+    color: #e5c66b;
+
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
 /* ==================================
    PHOTO CREDITS FOOTER
    ================================== */
@@ -249,8 +266,18 @@
 
         @media (max-width: 600px) {
             .page-header {
-                padding: 22px 15px;
-            }
+    padding: 30px 15px 50px;
+}
+
+.page-header h1 {
+    font-size: clamp(25px, 7vw, 36px);
+    letter-spacing: 1px;
+}
+
+.page-header p {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
 
             .back-button {
                 bottom: 18px;
@@ -362,14 +389,19 @@
             </span>
         </a>
 </div>
-    <!-- ==================================
-         TITLE AND SUBTITLE
-         ================================== -->
+ <!-- ==================================
+     TITLE AND SUBTITLE
+     ================================== -->
 
-    <header class="page-header">
-        <h1></h1>
-        <p></p>
-    </header>
+<header class="page-header">
+
+    <h1>PROJECT 5050</h1>
+
+    <p>
+        Historical Connections · Academic Partnership · Shared Future
+    </p>
+
+</header>
 
     <!-- ==================================
          BACK TO MAIN PAGE
