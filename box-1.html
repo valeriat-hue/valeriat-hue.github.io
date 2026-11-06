@@ -202,41 +202,47 @@
         }
 
 
-        /* ==================================
-           BACK TO MAIN PAGE BUTTON
-           ================================== */
+      /* ==================================
+   NAVIGATION BUTTONS
+   ================================== */
 
-        .back-button {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
+.back-buttons {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
 
-            display: inline-block;
-            padding: 13px 28px;
-            border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
-            background: rgba(25,25,25,0.9);
-            color: white;
-            text-decoration: none;
+.back-button {
+    display: inline-block;
+    padding: 13px 28px;
+    border-radius: 2px;
 
-            font-family: 'Kanit', sans-serif;
-            font-size: 15px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+    background: rgba(25,25,25,0.9);
+    color: white;
+    text-decoration: none;
 
-            border: 1px solid rgba(201,164,59,0.7);
+    font-family: 'Kanit', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
 
-            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    border: 1px solid rgba(201,164,59,0.7);
 
-            transition: background 0.3s, color 0.3s;
-        }
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
 
-        .back-button:hover {
-            background: #c9a43b;
-            color: #222;
-        }
+    transition: background 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+    background: #c9a43b;
+    color: #222;
+}
 /* ==================================
    PHOTO CREDITS FOOTER
    ================================== */
@@ -276,12 +282,19 @@
                 padding: 15px 22px 85px;
             }
 
-            .back-button {
-                bottom: 18px;
-                padding: 11px 22px;
-                font-size: 14px;
-                white-space: nowrap;
-            }
+         .back-buttons {
+    bottom: 18px;
+    gap: 8px;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.back-button {
+    padding: 11px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+}
 
             .lightbox {
                 padding: 45px 10px;
@@ -401,13 +414,21 @@ The academic connection with Freiberg continued through the exchange of knowledg
     </div>
 
 
-    <!-- ==================================
-         5. BACK TO MAIN PAGE BUTTON
-         ================================== -->
+  <!-- ==================================
+     5. NAVIGATION BUTTONS
+     ================================== -->
+
+<div class="back-buttons">
 
     <a href="index.html" class="back-button">
         &#8592; Back to Main Page
     </a>
+
+    <a href="expo.html" class="back-button">
+        &#8592; Back to Exhibition Overview
+    </a>
+
+</div>
 
 <!-- ==================================
      6. PHOTO CREDITS FOOTER
